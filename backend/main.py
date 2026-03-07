@@ -1,17 +1,19 @@
 from fastapi import FastAPI, HTTPException
-
 from schemas import TaskRequest
-from database import create
+from database import *
 app = FastAPI()
 
 @app.post('/task')
 async def create_task(task: TaskRequest):
     try:
         create(task)
-    except Exception as error:
-        raise HTTPException(status_code=400, detail=str(error))
+    except Exception as e:
+        raise HTTPException(status_code=404, detail=e)
 
+@app.get('/tasks')
+async def get_tasks():
+    return read()
 
-# @app.get('/tasks')
-# async def get_tasks():
-#     return temp
+@app.delete('/tasks/{task_id}')
+async def delete_task(task_id: int):
+    return delete(task_id)
