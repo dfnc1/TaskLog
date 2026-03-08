@@ -4,4 +4,4 @@ class TaskRequest(BaseModel):
     matkul: str
     tugas: str
     deadline: str
-    description: str
+    deskripsi: str

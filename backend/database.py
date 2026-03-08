@@ -10,7 +10,7 @@ def connection() -> sqlite3.Connection:
             check_same_thread=False
         )
     except sqlite3.Error as e:
-        raise HTTPException(status_code=400, detail=e)
+        raise HTTPException(status_code=400, detail=str(e))
 
     return conn
 
@@ -18,9 +18,9 @@ def create(task: TaskRequest) -> TaskRequest:
     try:
         cursor = connection().cursor()
         cursor.execute('INSERT INTO tasks (matkul, tugas, deadline, description) VALUES (?, ?, ?, ?)',
-                       (task.matkul, task.tugas, task.deadline, task.descripsi))
+                       (task.matkul, task.tugas, task.deadline, task.deskripsi))
     except sqlite3.Error as e:
-        raise HTTPException(status_code=404, detail=e)
+        raise HTTPException(status_code=404, detail=str(e))
 
     return task
 
@@ -36,6 +36,5 @@ def delete(id: int):
         cursor = connection().cursor()
         cursor.execute(' DELETE FROM tasks WHERE id = ? ',
                        (id,))
-        # cursor.execute('UPDATE tasks SET id = id - 1 WHERE id > 5 ;')
     except sqlite3.Error as e:
-        raise HTTPException(status_code=404, detail=e)
+        raise HTTPException(status_code=404, detail=str(e))
