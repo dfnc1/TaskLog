@@ -18,7 +18,7 @@ def create(task: TaskRequest) -> TaskRequest:
     try:
         cursor = connection().cursor()
         cursor.execute('INSERT INTO tasks (matkul, tugas, deadline, description) VALUES (?, ?, ?, ?)',
-                       (task.matkul, task.tugas, task.deadline, task.description))
+                       (task.matkul, task.tugas, task.deadline, task.descripsi))
     except sqlite3.Error as e:
         raise HTTPException(status_code=404, detail=e)
 
