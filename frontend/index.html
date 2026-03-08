@@ -6,10 +6,42 @@
     <title>task log</title>
 </head>
 <body>
-    
+
+    <table>
+        <tr>
+            <td><input type="text" id="MataKuliah" placeholder="MataKuliah"></td>
+        </tr>
+        <tr>
+            <td><input type="text" id="Tugas" placeholder="Tugas"></td>
+        </tr>
+        <tr>
+            <td><input type="date" id="Deadline" placeholder="Deadline"></td>
+        </tr> 
+        <tr>
+            <td><textarea name="Deskripsi" id="Deskripsi" placeholder="Deskripsi"></textarea></td>
+        </tr>     
+        <tr>
+            <td><button id="Simpan">Simpan</button>
+                <button id="Batal">Batal</button></td>
+        </tr>
+    </table>
+    <br>
     <table border="1" cellpadding="10">
+        <thead>
+            <td>No</td>
+            <td>Mata Kuliah</td>
+            <td>Tugas</td>
+            <td>Deadline</td>
+            <td>Deskripsi</td>
+        </thead>
         <tbody id="hasil" >
         </tbody>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <td><input type="number" id="Id"> <button id="deleteById">delete</button></td>
+        </tr>
     </table>
 
     <script src="app.js"></script>
