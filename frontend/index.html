@@ -1,49 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>task log</title>
+    <title>Task Log App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <table>
-        <tr>
-            <td><input type="text" id="MataKuliah" placeholder="MataKuliah"></td>
-        </tr>
-        <tr>
-            <td><input type="text" id="Tugas" placeholder="Tugas"></td>
-        </tr>
-        <tr>
-            <td><input type="date" id="Deadline" placeholder="Deadline"></td>
-        </tr> 
-        <tr>
-            <td><textarea name="Deskripsi" id="Deskripsi" placeholder="Deskripsi"></textarea></td>
-        </tr>     
-        <tr>
-            <td><button id="Simpan">Simpan</button>
-                <button id="Batal">Batal</button></td>
-        </tr>
-    </table>
-    <br>
-    <table border="1" cellpadding="10">
-        <thead>
-            <td>No</td>
-            <td>Mata Kuliah</td>
-            <td>Tugas</td>
-            <td>Deadline</td>
-            <td>Deskripsi</td>
-        </thead>
-        <tbody id="hasil" >
-        </tbody>
-    </table>
-    <br>
-    <table>
-        <tr>
-            <td><input type="number" id="Id"> <button id="deleteById">delete</button></td>
-        </tr>
-    </table>
+    <div class="app-container">
+        <h1 class="header-title">Task Log</h1>
+
+        <div class="card">
+            <div class="form-group">
+                <label>Mata Kuliah</label>
+                <input type="text" placeholder="Masukkan Mata Kuliah..." id="MataKuliah">
+            </div>
+            <div class="form-group">
+                <label>Judul</label>
+                <input type="text" placeholder="Masukkan Judul Tugas... " id="Tugas">
+            </div>
+            <div class="form-group">
+                <label>Deadline</label>
+                <input type="date" placeholder="Contoh: 12 Maret 2026" id="Deadline">
+            </div>
+            <div class="form-group">
+                <label>Deskripsi</label>
+                <input type="text" placeholder="Detail tugas..." id="Deskripsi">
+            </div>
+            
+            <div class="btn-add-container">
+                <button class="btn-add" id="simpan">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="card table-card">
+            <h2>Daftar Tugas</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Mata Kuliah</th>
+                            <th>Tugas</th>
+                            <th>Deadline</th>
+                            <th>Deskripsi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="hasil">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="delete-section">
+            <h2>Input ID untuk Delete</h2>
+            <div class="delete-controls">
+                <input type="number" placeholder="ID" id="Id">
+                <button class="btn-delete" id="deleteById">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
+
 </body>
 </html>
