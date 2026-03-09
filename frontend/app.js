@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   getUsers(); 
-  document.getElementById("Simpan").addEventListener("click", simpanTask);
-  document.getElementById("Batal").addEventListener("click", resetForm);
+  document.getElementById("simpan").addEventListener("click", simpanTask); // FIX 1: "Simpan" → "simpan"
   document.getElementById("deleteById").addEventListener("click", deleteTask);
 });
 
@@ -10,7 +9,7 @@ async function getUsers() {
     const response = await fetch("http://127.0.0.1:8000/tasks");
 
     if (!response.ok){
-        alert("error :", response.status);
+        alert(`Error: ${response.status}`); // FIX 4: alert hanya 1 argumen
         return;
     }
 
@@ -27,14 +26,14 @@ function tampilkanData(data) {
 
     data.forEach(user => {
         
-        const baris = document.createElement("tr");
+        const baris = document.createElement("tr"); // FIX 2: hapus <tr> duplikat di dalam innerHTML
 
         baris.innerHTML = `
             <td>${user.id}</td>
             <td>${user.matkul}</td>
             <td>${user.tugas}</td>
             <td>${user.deadline}</td>
-            <td>${user.description}</td>
+            <td>${user.deskripsi}</td>  <!-- FIX 3: "description" → "deskripsi" -->
         `;
 
         hasil.appendChild(baris);
@@ -51,13 +50,13 @@ async function createtasks(matkul, tugas, deadline, deskripsi){
 
     if (!response.ok){
         const error = await response.json();
-        alert("Gagal tanmbah task :" , error);
+        alert(`Gagal tambah task: ${JSON.stringify(error)}`); // FIX 4: alert 1 argumen + typo "tanmbah"
         return;
     }
 
-    console.log("Task berhasil ditambah")
-
-    getUsers()
+    console.log("Task berhasil ditambah");
+    getUsers();
+    resetForm();
 }
 
 function simpanTask(){
@@ -71,7 +70,7 @@ function simpanTask(){
         return;
     }
 
-    createtasks(matkul, tugas, deadline, deskripsi)
+    createtasks(matkul, tugas, deadline, deskripsi);
 }
 
 
@@ -92,7 +91,7 @@ function resetForm(){
 async function deleteTask() {
     const id = document.getElementById("Id").value;
     if(!id){
-        alert("masukkan id");
+        alert("Masukkan ID terlebih dahulu");
         return;
     }
 
@@ -101,7 +100,7 @@ async function deleteTask() {
     });
 
     if (!response.ok) {
-        console.log("Gagal hapus task:", response.status);
+        alert(`Gagal hapus task: ${response.status}`); // FIX 4: alert 1 argumen
         return;
     }
 
